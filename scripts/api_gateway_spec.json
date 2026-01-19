@@ -1,0 +1,101 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GuestBook API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "x-yc-apigateway-integration": {
+          "type": "object_storage",
+          "bucket": "guestbook-frontend-aroma-bucket",
+          "object": "index.html"
+        }
+      }
+    },
+    "/{path+}": {
+      "parameters": [
+        {
+          "name": "path",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "x-yc-apigateway-integration": {
+          "type": "object_storage",
+          "bucket": "guestbook-frontend-aroma-bucket",
+          "object": "{path}"
+        }
+      },
+      "options": {
+        "x-yc-apigateway-integration": {
+          "type": "dummy",
+          "http_code": 200,
+          "http_headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type"
+          },
+          "content": {
+            "text/plain": "OK"
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "x-yc-apigateway-integration": {
+          "type": "cloud_functions",
+          "function_id": "d4eo3qoe2j5bmcr4rbnr"
+        }
+      },
+      "options": {
+        "x-yc-apigateway-integration": {
+          "type": "dummy",
+          "http_code": 200,
+          "http_headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type"
+          },
+          "content": {
+            "text/plain": "OK"
+          }
+        }
+      }
+    },
+    "/messages": {
+      "get": {
+        "x-yc-apigateway-integration": {
+          "type": "cloud_functions",
+          "function_id": "d4eo3qoe2j5bmcr4rbnr"
+        }
+      },
+      "post": {
+        "x-yc-apigateway-integration": {
+          "type": "cloud_functions",
+          "function_id": "d4eo3qoe2j5bmcr4rbnr"
+        }
+      },
+      "options": {
+        "x-yc-apigateway-integration": {
+          "type": "dummy",
+          "http_code": 200,
+          "http_headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type"
+          },
+          "content": {
+            "text/plain": "OK"
+          }
+        }
+      }
+    }
+  }
+}

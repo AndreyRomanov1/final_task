@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Book</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Guest Book</h1>
+        <div class="versions">
+            <p>Frontend Version: <span id="frontend-version"></span></p>
+            <p>Backend Version: <span id="backend-version">Loading...</span></p>
+            <p>Backend Function Version: <span id="backend-function-version">Loading...</span></p>
+        </div>
+        <form id="message-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="messages-list">
+        </div>
+    </div>
+    <script src="version.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
